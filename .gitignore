@@ -32,6 +32,13 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# netlify (build output + local blob sandbox — not user code)
+/.netlify
+
+# locally-uploaded product images (production uses Netlify Blobs)
+/.uploads
 
 # vercel
 .vercel
