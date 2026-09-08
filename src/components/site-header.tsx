@@ -41,26 +41,6 @@ export async function SiteHeader() {
           <SearchIcon />
         </Link>
       </div>
-
-      {categories.length > 0 && (
-        <nav
-          aria-label="Categories"
-          className="hidden border-t border-ink/10 md:block"
-        >
-          <ul className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-2 px-6 py-3 text-xs tracking-widest uppercase">
-            {categories.map((category) => (
-              <li key={category.id}>
-                <Link
-                  href={`/products?category=${category.slug}`}
-                  className="text-ink-soft transition-colors hover:text-gold-deep"
-                >
-                  {category.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
     </header>
   );
 }
