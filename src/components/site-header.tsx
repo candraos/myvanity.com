@@ -28,9 +28,6 @@ export async function SiteHeader() {
           <Link href="/categories" className="text-ink-soft hover:text-ink">
             Categories
           </Link>
-          <Link href="/search" className="text-ink-soft hover:text-ink">
-            Search
-          </Link>
         </nav>
 
         <Link
