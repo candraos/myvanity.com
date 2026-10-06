@@ -2,7 +2,7 @@
   # `db:migrate:deploy` applies pending Prisma migrations against the branch's
   # Netlify DB before the site is built. A failed migration fails the deploy
   # rather than publishing a build that expects columns the database lacks.
-  command = "npm run db:migrate:deploy && npm run db:seed && npm run build"
+  command = "npm run db:migrate:deploy && npm run build"
   publish = ".next"
 
 [build.environment]
