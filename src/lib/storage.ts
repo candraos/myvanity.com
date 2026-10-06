@@ -50,7 +50,10 @@ function detectType(bytes: Uint8Array) {
   return match;
 }
 
-const onNetlify = Boolean(process.env.NETLIFY);
+// process.env.NETLIFY is a *build-time* flag and isn't set in the deployed
+// function's runtime; NETLIFY_BLOBS_CONTEXT is, and it's the one that actually
+// says whether a Blobs store is available here.
+const onNetlify = Boolean(process.env.NETLIFY_BLOBS_CONTEXT);
 const LOCAL_DIR = path.join(process.cwd(), ".uploads");
 
 /**
@@ -70,7 +73,7 @@ async function getBlobStore() {
   const { getStore, getDeployStore } = await import("@netlify/blobs");
   const name = "product-images";
   // Keep preview/branch uploads out of the production store.
-  return process.env.CONTEXT === "production"
+  return process.env.DEPLOY_CONTEXT === "production"
     ? getStore(name)
     : getDeployStore(name);
 }

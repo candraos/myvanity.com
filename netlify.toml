@@ -11,3 +11,16 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# The reserved CONTEXT/NETLIFY build flags aren't forwarded to the deployed
+# function's runtime — only custom context-scoped vars are. src/lib/storage.ts
+# reads DEPLOY_CONTEXT at request time to pick the persistent vs. deploy-scoped
+# Blobs store.
+[context.production.environment]
+  DEPLOY_CONTEXT = "production"
+
+[context.deploy-preview.environment]
+  DEPLOY_CONTEXT = "deploy-preview"
+
+[context.branch-deploy.environment]
+  DEPLOY_CONTEXT = "branch-deploy"
