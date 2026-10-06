@@ -14,15 +14,15 @@ for (const file of [".env.local", ".env"]) {
   if (existsSync(file)) process.loadEnvFile(file);
 }
 
-console.error("[DEBUG] env keys matching DATABASE|NETLIFY:", Object.keys(process.env).filter(k => /DATABASE|NETLIFY/i.test(k)));
-
-const url = process.env.DATABASE_URL || process.env.NETLIFY_DATABASE_URL;
+// Netlify DB currently injects NETLIFY_DB_URL (NETLIFY_DATABASE_URL is kept as a
+// fallback in case Netlify renames it back/again).
+const url = process.env.DATABASE_URL || process.env.NETLIFY_DB_URL || process.env.NETLIFY_DATABASE_URL;
 
 if (!url) {
   console.error(
     "No database URL found.\n" +
       "  Local:   set DATABASE_URL in .env.local (see .env.example)\n" +
-      "  Netlify: NETLIFY_DATABASE_URL is injected once Netlify DB is provisioned",
+      "  Netlify: NETLIFY_DB_URL is injected once Netlify DB is provisioned",
   );
   process.exit(1);
 }

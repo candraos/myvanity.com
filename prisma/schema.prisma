@@ -2,8 +2,8 @@
 //
 // Provider is PostgreSQL, which is what Netlify DB (powered by Neon) provisions.
 // Locally, point DATABASE_URL at any Postgres instance. On Netlify the platform
-// injects NETLIFY_DATABASE_URL instead; netlify.toml maps it onto DATABASE_URL for
-// the build, and src/lib/prisma.ts falls back to it at runtime.
+// injects NETLIFY_DB_URL instead; scripts/prisma-with-db-url.mjs maps it onto
+// DATABASE_URL for the build, and src/lib/prisma.ts falls back to it at runtime.
 
 generator client {
   provider = "prisma-client-js"

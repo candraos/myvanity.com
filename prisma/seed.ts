@@ -7,7 +7,7 @@ for (const file of [".env.local", ".env"]) {
   if (existsSync(file)) process.loadEnvFile(file);
 }
 
-const databaseUrl = process.env.DATABASE_URL ?? process.env.NETLIFY_DATABASE_URL;
+const databaseUrl = process.env.DATABASE_URL ?? process.env.NETLIFY_DB_URL ?? process.env.NETLIFY_DATABASE_URL;
 
 if (!databaseUrl) {
   console.error(
