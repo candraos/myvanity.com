@@ -58,7 +58,10 @@ export function handleError(error: unknown, context: string) {
   }
 
   console.error(`[${context}]`, error);
-  return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
+  return NextResponse.json(
+    { error: "Something went wrong.", debug: error instanceof Error ? { message: error.message, stack: error.stack } : String(error) },
+    { status: 500 },
+  );
 }
 
 /** Parses a JSON body without letting a malformed payload throw past the handler. */
