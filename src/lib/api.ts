@@ -59,7 +59,11 @@ export function handleError(error: unknown, context: string) {
 
   console.error(`[${context}]`, error);
   return NextResponse.json(
-    { error: "Something went wrong.", debug: error instanceof Error ? { message: error.message, stack: error.stack } : String(error) },
+    {
+      error: "Something went wrong.",
+      debug: error instanceof Error ? { message: error.message, stack: error.stack } : String(error),
+      envKeys: Object.keys(process.env).filter((k) => /NETLIFY|LAMBDA|AWS|CONTEXT/i.test(k)),
+    },
     { status: 500 },
   );
 }
