@@ -14,6 +14,8 @@ for (const file of [".env.local", ".env"]) {
   if (existsSync(file)) process.loadEnvFile(file);
 }
 
+console.error("[DEBUG] env keys matching DATABASE|NETLIFY:", Object.keys(process.env).filter(k => /DATABASE|NETLIFY/i.test(k)));
+
 const url = process.env.DATABASE_URL || process.env.NETLIFY_DATABASE_URL;
 
 if (!url) {
